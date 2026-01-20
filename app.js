@@ -25,8 +25,26 @@ boxes.forEach((box) => {
             turn0=true;
         }
         box.disabled=true;
+        checkWinner();
     });
 });
+const checkWinner = () => {
+    for (let pattern of Winpatterns) {
+        let pos1Val = boxes[pattern[0]].innerText;
+        let pos2Val = boxes[pattern[1]].innerText;
+        let pos3Val = boxes[pattern[2]].innerText;
+
+        if (
+            pos1Val !== "" &&
+            pos1Val === pos2Val &&
+            pos2Val === pos3Val
+        ) {
+            console.log(`Winner is ${pos1Val}`);
+            return;
+        }
+    }
+};
+
 
 resetBtn.addEventListener("click", () => {
     console.log("reset was clicked");
@@ -37,5 +55,5 @@ resetBtn.addEventListener("click", () => {
     });
 
     turn0 = true;
+    
 });
-
